@@ -28,31 +28,25 @@ export function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {/* <GlobalStyles /> */}
-      <Box height="100vh"
-        display="flex"
-        flexDirection="column">
-        <Router>
-          <Navbar />
-          <Paper
-            elevation={3}
-            sx={{ padding: "1rem", backgroundColor: "secondary.light" }}
-          >
-            <Routes>
-              {appRoutes.map((route) => (
-                <Route
-                  key={route.key}
-                  path={route.path}
-                  element={<route.component />}
-                />
-              ))}
-              <Route path="*" element={<NotFound />}></Route>
-            </Routes>
-          </Paper>
-          <Footer />
-        </Router>
-      </Box>
+
+      <Router>
+        <Navbar />
+
+      <div className="p-4">
+      <Routes>
+          {appRoutes.map((route) => (
+            <Route
+              key={route.key}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </div>
+
+
+      </Router>
     </ThemeProvider>
   );
 }
