@@ -1,4 +1,4 @@
-import type { RootState } from '../../store'
+import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from './counterSlice'
 import Stack from '@mui/material/Stack';

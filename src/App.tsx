@@ -27,12 +27,12 @@ export function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
 
       <Router>
         <Navbar />
 
-      <div className="p-4">
+      <div className="p-4" >
       <Routes>
           {appRoutes.map((route) => (
             <Route
