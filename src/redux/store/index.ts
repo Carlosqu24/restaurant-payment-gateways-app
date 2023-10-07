@@ -1,6 +1,8 @@
 import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit';
 import counterReducer from '../../features/counter/counterSlice';
 import thunk, { ThunkAction } from 'redux-thunk';
+import productsReducer from '../reducers/productsReducer';
+import shoppingCartReducer from '../reducers/shoppingCartReducer';
 
 const middlewareEnhancer = applyMiddleware(thunk)
 const composedEnhancers = compose(middlewareEnhancer)
@@ -8,6 +10,8 @@ const composedEnhancers = compose(middlewareEnhancer)
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
+        products: productsReducer,
+        shoppingCart: shoppingCartReducer
     },
 });
 
