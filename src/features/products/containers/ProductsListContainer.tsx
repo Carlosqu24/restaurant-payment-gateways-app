@@ -1,23 +1,37 @@
-"use client";
-import React, { useState, useEffect } from "react";
+// @ts-nocheck
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProductListPresentation from "../presentations/ProductListPresentation";
-import { getAllProducts } from "../../../services/product";
-import { Product } from "../../../models/product"
 
-import { products as aProducts } from "../../../db/product";
+import { fetchAllProducts } from "../../../redux/reducers/productsReducer";
+import { addShoppingCartProduct, incrementShoppingCartProductQuantity } from "../../../redux/reducers/shoppingCartReducer";
+import { Product, ShoppingCartProduct } from "../../../models/product";
+
 const ProductsListContainer = () => {
-  const [products, setProducts] = useState<Product[]>(aProducts);
+  const productsList = useSelector((state: RootState) => state.products.data)
+  const shoppingCartList = useSelector((state: RootState) => state.shoppingCart.dataList)
+  const dispatch = useDispatch()
+
+  console.log({})
 
   useEffect(() => {
-    const fetchData = async () => {
-      const products = await getAllProducts();
-      setProducts(products);
-    };
-
-    fetchData();
+    dispatch(fetchAllProducts())
   }, []);
 
-  return <ProductListPresentation products={products} />;
+  const onAddProductToShoppingCart = (product: Product) => {
+
+    const newCartProduct: ShoppingCartProduct = {
+      ...product,
+      quantity: 1
+    }
+
+    dispatch(addShoppingCartProduct(newCartProduct))
+  }
+
+  return <ProductListPresentation 
+        products={productsList} 
+        onAddProductToShoppingCart={onAddProductToShoppingCart} 
+      />;
 };
 
 export default ProductsListContainer;

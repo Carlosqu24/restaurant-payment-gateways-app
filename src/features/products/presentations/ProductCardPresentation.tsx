@@ -3,6 +3,7 @@ import React from "react";
 
 interface ProductCardPresentationProps {
   product: Product;
+  onAddProductToShoppingCart: Function
 }
 
 const productCardPresentationClassNames = {
@@ -15,7 +16,7 @@ const productCardPresentationClassNames = {
   cardFooter: "mt-6 flex justify-between",
 };
 
-const ProductCardPresentation = ({ product }: ProductCardPresentationProps) => {
+const ProductCardPresentation = ({ product, onAddProductToShoppingCart }: ProductCardPresentationProps) => {
   return (
     <div
       // style={{ backgroundColor: "#f1c834", color: "#000" }}
@@ -41,7 +42,7 @@ const ProductCardPresentation = ({ product }: ProductCardPresentationProps) => {
         <p className={productCardPresentationClassNames.cardPrice}>
           ${product.salePrice}
         </p>
-        <button>Añadir al carrito</button>
+        <button onClick={() => onAddProductToShoppingCart(product)}>Añadir al carrito</button>
       </div>
     </div>
   );
