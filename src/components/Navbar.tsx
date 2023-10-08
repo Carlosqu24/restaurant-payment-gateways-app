@@ -131,6 +131,14 @@ const Navbar: FC = (): ReactElement => {
                             ))}
                         </Box>
                     </Box>
+                    <Link 
+                        to={"/shopping-cart"} 
+                        color="black"
+                        underline="none"
+                        variant="button"
+                        component={NavLink}
+                    >Shopping Cart</Link>
+                    
                 </Toolbar>
             </Container>
         </Box>
