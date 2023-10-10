@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../../redux/store";
 import ShoppingCartListPresentation from "../presentations/ShoppingCartListPresentation";
+import { decrementShoppingCartProductQuantity, incrementShoppingCartProductQuantity } from "../../../redux/reducers/shoppingCartReducer";
 
 const ShoppingCartListContainer = () => {
   const shoppingCartList = useSelector((state: RootState) => state.shoppingCart.dataList)
@@ -13,12 +14,12 @@ const ShoppingCartListContainer = () => {
     shoppingCartList
   })
 
-  const onIncrementCartProductQuanitity = () => {
-
+  const onIncrementCartProductQuanitity = (productId: number) => {
+    dispatch(incrementShoppingCartProductQuantity(productId))
   }
 
-  const onDecrementCartProductQuanitity = () => {
-    
+  const onDecrementCartProductQuanitity = (productId: number) => {
+    dispatch(decrementShoppingCartProductQuantity(productId))
   }
 
   return (

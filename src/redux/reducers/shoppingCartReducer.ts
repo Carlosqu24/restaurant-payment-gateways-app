@@ -75,6 +75,6 @@ export const shoppingCartSlice = createSlice({
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
-export const { addShoppingCartProduct, incrementShoppingCartProductQuantity } = shoppingCartSlice.actions
+export const { addShoppingCartProduct, incrementShoppingCartProductQuantity, decrementShoppingCartProductQuantity } = shoppingCartSlice.actions
 
 export default shoppingCartSlice.reducer

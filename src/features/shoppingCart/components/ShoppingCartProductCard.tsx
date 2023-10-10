@@ -38,7 +38,9 @@ interface ShoppingCartProductCardProps {
 }
 
 const ShoppingCartProductCard = ({
-  shoppingCartProduct
+  shoppingCartProduct,
+  onIncrementCartProductQuanitity,
+  onDecrementCartProductQuanitity
 }: ShoppingCartProductCardProps) => {
   return (
     <div
@@ -62,11 +64,13 @@ const ShoppingCartProductCard = ({
         <div className={shoppingCartProductCardStyles.quantityButtonsContainer.classNames}>
           <button
             className={shoppingCartProductCardStyles.quantityButtons.classNames}
+            onClick={() => onDecrementCartProductQuanitity(shoppingCartProduct.id)}
           >-</button>
           <span
             className={shoppingCartProductCardStyles.quantityButtons.classNames}
-          >1</span>
+          >{shoppingCartProduct.quantity}</span>
           <button
+            onClick={() => onIncrementCartProductQuanitity(shoppingCartProduct.id)}
           >+</button>
         </div>
 
