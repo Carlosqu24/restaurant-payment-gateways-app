@@ -18,8 +18,12 @@ export const shoppingCartProductCardStyles = {
             color: "black"
         }
     },
+    quantityButtonsContainer: {
+        classNames: "flex md:flex-col xl:flex-row",
+        cssStyles: {}
+    },
     quantityButtons: {
-        classNames: "mr-10",
+        classNames: "xl:mr-10 md:mb-10 sm:mr-10",
         cssStyles: {}
     },
 }

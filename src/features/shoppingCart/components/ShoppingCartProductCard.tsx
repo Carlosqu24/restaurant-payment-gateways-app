@@ -1,6 +1,35 @@
 import React from 'react'
 import { ShoppingCartProduct } from '../../../models/product'
-import { shoppingCartProductCardStyles } from './ShoppingCartProductCard.styles'
+
+const shoppingCartProductCardStyles = {
+  container: {
+      classNames: "flex items-center py-2 px-6",
+      cssStyles: { backgroundColor: "white", color: "black" }
+  },
+  image: {
+      classNames: "",
+      cssStyles: {
+          height: "100px",
+          width: "100px"
+      }
+  },
+  body: {
+      classNames: "flex justify-between items-center pl-5",
+      cssStyles: {
+          width: "100%",
+          backgroundColor: "white",
+          color: "black"
+      }
+  },
+  quantityButtonsContainer: {
+      classNames: "flex md:flex-col xl:flex-row flex-col",
+      cssStyles: {}
+  },
+  quantityButtons: {
+      classNames: "xl:mr-10 md:mr-0 sm:mr-10",
+      cssStyles: {}
+  },
+}
 
 interface ShoppingCartProductCardProps {
   shoppingCartProduct: ShoppingCartProduct
@@ -30,7 +59,7 @@ const ShoppingCartProductCard = ({
           <p>{shoppingCartProduct.category}</p>
         </div>
         
-        <div >
+        <div className={shoppingCartProductCardStyles.quantityButtonsContainer.classNames}>
           <button
             className={shoppingCartProductCardStyles.quantityButtons.classNames}
           >-</button>
