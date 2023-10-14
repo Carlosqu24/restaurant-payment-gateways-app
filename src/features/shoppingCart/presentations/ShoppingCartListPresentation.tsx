@@ -1,6 +1,7 @@
 import React from 'react'
 import ShoppingCartProductCard from '../components/ShoppingCartProductCard';
 import { ShoppingCartProduct } from '../../../models/product';
+import { PurchaseDetails } from '../../../redux/reducers/shoppingCartReducer';
 
 const shoppingCartListContainer = {
   container: {
@@ -12,19 +13,21 @@ const shoppingCartListContainer = {
       cssStyles: {}
   },
   orderDetails: {
-      classNames: "w-full mt-5 xl:mt-0 2xl:mt-0",
+      classNames: "w-full mt-5 xl:mt-0 2xl:mt-0 bg-[#FFFFFF] color-[#000000] p-4",
       cssStyles: {}
   }
 }
 
 interface ShoppingCartListPresentationProps {
     shoppingCartList: ShoppingCartProduct[]
+    purchaseDetails: PurchaseDetails
     onIncrementCartProductQuanitity: Function
     onDecrementCartProductQuanitity: Function
 }
 
 const ShoppingCartListPresentation = ({ 
     shoppingCartList,
+    purchaseDetails,
     onIncrementCartProductQuanitity,
     onDecrementCartProductQuanitity 
 }: ShoppingCartListPresentationProps) => {
@@ -51,11 +54,29 @@ const ShoppingCartListPresentation = ({
           <div 
             style={{
               // width: "35%",
-              backgroundColor: "white"
+              backgroundColor: "white",
+              color: "black"
             }}
             className={shoppingCartListContainer.orderDetails.classNames}
           >
             <h2>Order Details</h2>
+            <div className="flex justify-between">
+              <p>Subtotal Amount</p>
+              <p className='font-bold'>{purchaseDetails?.subTotal ?? 0}</p>
+            </div>
+
+            <div className="flex justify-between">
+              <p>Taxes Amount</p>
+              <p className='font-bold'>{purchaseDetails?.taxAmount ?? 0}</p>
+            </div>
+
+
+            <div className="flex justify-between">
+              <p className='font-bold'>Total</p>
+              <p className='font-bold'>{purchaseDetails?.total ?? 0}</p>
+            </div>
+
+            <button className='mt-6 w-full py-2 px-6 bg-black text-white'>Pay</button>
           </div>
         </div>
       );

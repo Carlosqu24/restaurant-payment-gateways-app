@@ -7,7 +7,10 @@ import ShoppingCartListPresentation from "../presentations/ShoppingCartListPrese
 import { decrementShoppingCartProductQuantity, incrementShoppingCartProductQuantity } from "../../../redux/reducers/shoppingCartReducer";
 
 const ShoppingCartListContainer = () => {
-  const shoppingCartList = useSelector((state: RootState) => state.shoppingCart.dataList)
+  const {
+    dataList: shoppingCartList,
+    purchaseDetails
+  } = useSelector((state: RootState) => state.shoppingCart)
   const dispatch = useDispatch()
 
   console.log({
@@ -25,6 +28,7 @@ const ShoppingCartListContainer = () => {
   return (
     <ShoppingCartListPresentation 
         shoppingCartList={shoppingCartList} 
+        purchaseDetails={purchaseDetails}
         onIncrementCartProductQuanitity={onIncrementCartProductQuanitity}
         onDecrementCartProductQuanitity={onDecrementCartProductQuanitity}
     />

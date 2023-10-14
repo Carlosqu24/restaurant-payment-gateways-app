@@ -3,16 +3,38 @@ import { createSlice, current } from '@reduxjs/toolkit'
 
 import { ShoppingCartProduct } from "../../models/product"
 
+// interface PurchaseDetails {
+//     subtotal: 0,
+//     taxAmount: 0,
+//     fees: {
+//       shippingFee: 0,
+//       processingFee: 0
+//     },
+//     total: 0
+//   }
+
+export interface PurchaseDetails {
+    subTotal: number
+    taxAmount: number
+    total: number
+}
+
 interface ShoppingCartState {
     dataList: ShoppingCartProduct[],
     isLoading: boolean,
-    errorText: string | null
+    errorText: string | null,
+    purchaseDetails: PurchaseDetails
 }
 
 const shoppingCartInitialState: ShoppingCartState = {
     dataList: [],
     isLoading: false,
-    errorText: null
+    errorText: null,
+    purchaseDetails: {
+        subTotal: 0,
+        taxAmount: 0,
+        total: 0,
+    }
 }
 
 export const shoppingCartSlice = createSlice({
@@ -21,6 +43,20 @@ export const shoppingCartSlice = createSlice({
     reducers: {
         addShoppingCartProduct: (state, action) => {
             state.dataList.push(action.payload)
+
+
+            // Calculate purchaseDetails
+
+            const subTotal = state.dataList.reduce(
+                (prev, actual) => prev + (actual.salePrice * actual.quantity),
+                0
+            )
+            const taxAmount = subTotal * 0.13
+            const total = subTotal + taxAmount
+
+            state.purchaseDetails.subTotal = subTotal
+            state.purchaseDetails.taxAmount = taxAmount
+            state.purchaseDetails.total = total
         },
         incrementShoppingCartProductQuantity: (state, action) => {
             const cartProductId = action.payload
@@ -39,6 +75,19 @@ export const shoppingCartSlice = createSlice({
             ]
 
             state.dataList = finalData
+
+            // Calculate purchaseDetails
+
+            const subTotal = finalData.reduce(
+                (prev, actual) => prev + (actual.salePrice * actual.quantity),
+                0
+            )
+            const taxAmount = subTotal * 0.13
+            const total = subTotal + taxAmount
+
+            state.purchaseDetails.subTotal = subTotal
+            state.purchaseDetails.taxAmount = taxAmount
+            state.purchaseDetails.total = total
         },
         decrementShoppingCartProductQuantity: (state, action) => {
             const cartProductId = action.payload
@@ -60,6 +109,19 @@ export const shoppingCartSlice = createSlice({
             ]
 
             state.dataList = finalData
+
+            // Calculate purchaseDetails
+
+            const subTotal = finalData.reduce(
+                (prev, actual) => prev + (actual.salePrice * actual.quantity),
+                0
+            )
+            const taxAmount = subTotal * 0.13
+            const total = subTotal + taxAmount
+
+            state.purchaseDetails.subTotal = subTotal
+            state.purchaseDetails.taxAmount = taxAmount
+            state.purchaseDetails.total = total
         },
         resetShoppingCart: (state, action) => {
             state.dataList = shoppingCartInitialState.dataList
