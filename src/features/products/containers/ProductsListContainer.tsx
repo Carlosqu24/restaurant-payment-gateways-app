@@ -9,10 +9,8 @@ import { Product, ShoppingCartProduct } from "../../../models/product";
 
 const ProductsListContainer = () => {
   const productsList = useSelector((state: RootState) => state.products.data)
-  const shoppingCartList = useSelector((state: RootState) => state.shoppingCart.dataList)
   const dispatch = useDispatch()
 
-  console.log({})
 
   useEffect(() => {
     dispatch(fetchAllProducts())
