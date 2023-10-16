@@ -6,33 +6,38 @@ export const products: Product[] = [{
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
     salePrice: 13.2,
     rating: 4.2,
-    imageUrl: "products/transparent-bbq-ribs.png"
+    imageUrl: "products/transparent-bbq-ribs.png",
+    category: "Meats"
 }, {
     id: 2,
     name: "Pizza Jamón y Queso",
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
     salePrice: 19.5,
     rating: 4.2,
-    imageUrl: "products/transparent-cheese-jam-pizza.png"
+    imageUrl: "products/transparent-cheese-jam-pizza.png",
+    category: "Pizzas"
 }, {
     id: 3,
     name: "Spaghetti Carbonara",
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
     salePrice: 11.8,
     rating: 4.2,
-    imageUrl: "products/transparent-carbonara-noodles.png"
+    imageUrl: "products/transparent-carbonara-noodles.png",
+    category: "Pastas"
 }, {
     id: 4,
     name: "Hamburguesa de queso",
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
     salePrice: 6.85,
     rating: 4.2,
-    imageUrl: "products/transparent-cheeseburger.png"
+    imageUrl: "products/transparent-cheeseburger.png",
+    category: "Burguers"
 }, {
     id: 5,
     name: "Papas fritas",
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
     salePrice: 1.5,
     rating: 4.2,
-    imageUrl: "products/transparent-french-fries.png"
+    imageUrl: "products/transparent-french-fries.png",
+    category: "Appetitizers"
 }]
