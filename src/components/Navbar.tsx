@@ -30,7 +30,8 @@ const Navbar: FC = (): ReactElement => {
             sx={{
                 width: "100%",
                 height: "auto",
-                backgroundColor: "secondary.main",
+                backgroundColor: "white",
+                color: "black"
             }}
         >
             <Container maxWidth="xl">
@@ -43,7 +44,7 @@ const Navbar: FC = (): ReactElement => {
                             display: { xs: "none", md: "flex" },
                         }}
                     >
-                        Starter App
+                        Food Commerce App
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                         <IconButton
@@ -98,14 +99,6 @@ const Navbar: FC = (): ReactElement => {
                     >
                         React Starter App
                     </Typography>
-                    <IconButton
-                        size="large"
-                        aria-label="account of current user"
-                        href="https://github.com/theWhiteFox/Vite-React-TS-Redux-boilerplate"
-                        color="inherit"
-                    >
-                        <GitHubIcon />
-                    </IconButton>
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                         <Box
                             sx={{
@@ -124,7 +117,7 @@ const Navbar: FC = (): ReactElement => {
                                     color="black"
                                     underline="none"
                                     variant="button"
-                                    sx={{ fontSize: "large", marginLeft: "2rem" }}
+                                    sx={{ fontSize: "large", marginLeft: "2rem", textTransform: "none" }}
                                 >
                                     {page.title}
                                 </Link>

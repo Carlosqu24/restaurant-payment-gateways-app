@@ -24,6 +24,11 @@ export function App() {
         contrastText: "#000",
       },
     },
+   
+    typography: {
+      fontFamily: `"Inter", "IBM Plex Sans"`,
+      
+    },
   });
 
   return (
