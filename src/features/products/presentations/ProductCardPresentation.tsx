@@ -1,5 +1,7 @@
 import { Product } from "../../../models/product"
 import React from "react";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 interface ProductCardPresentationProps {
   product: Product;
@@ -8,42 +10,60 @@ interface ProductCardPresentationProps {
 
 const productCardPresentationClassNames = {
   cardContainer:
-    "p-6 mt-6 flex flex-col self-start rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  sm:shrink-0 sm:grow sm:basis-0",
+  `
+    mt-6 
+    flex 
+    flex-col 
+    self-start 
+    rounded-lg 
+    shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] 
+    sm:shrink-0 
+    sm:grow 
+    sm:basis-0 
+    cursor-pointer 
+    bg-transparent 
+  `,
   cardImage: "rounded-t-lg",
-  cardBody: "mb-6",
+  cardBody: "py-6 flex justify-between",
   cardTitle: "mb-2 text-xl font-medium leading-tight font-extrabold",
   cardPrice: "font-extrabold",
-  cardFooter: "mt-6 flex justify-between",
+  cardFooter: "p-6 mt-6 flex justify-between text-[#000]",
 };
 
 const ProductCardPresentation = ({ product, onAddProductToShoppingCart }: ProductCardPresentationProps) => {
   return (
     <div
-      // style={{ backgroundColor: "#f1c834", color: "#000" }}
-      style={{ backgroundColor: "rgba(235, 235, 235, 0.875)", color: "#000" }}
-      // style={{ backgroundColor: "#282828", color: "#fff" }}
+      style={{ 
+        
+      }}
       className={productCardPresentationClassNames.cardContainer}
     >
+
+      <div style={{ background: "#75757565", display: "flex", alignItems: "center", justifyContent: "center"}} className="p-6">
+        <img
+          className={productCardPresentationClassNames.cardImage}
+          src={product.imageUrl}
+          alt="Hollywood Sign on The Hill"
+          style={{ height: "200px", objectFit: "contain" }}
+        />
+      </div>
+
       <div className={productCardPresentationClassNames.cardBody}>
-        <h5 className={productCardPresentationClassNames.cardTitle}>
-          {product.name}
-        </h5>
-        <p>{product.description}</p>
+        <div>
+          <h5 className={productCardPresentationClassNames.cardTitle}>
+            {product.name}
+          </h5>
+          <p className={productCardPresentationClassNames.cardPrice}>
+            ${product.salePrice}
+          </p>
+        </div>
+
+        <AddShoppingCartIcon 
+          className="cursor-pointer"
+          onClick={() => onAddProductToShoppingCart(product)} 
+        />
       </div>
 
-      <img
-        className={productCardPresentationClassNames.cardImage}
-        src={product.imageUrl}
-        alt="Hollywood Sign on The Hill"
-        style={{ height: "200px", objectFit: "contain" }}
-      />
-
-      <div className={productCardPresentationClassNames.cardFooter}>
-        <p className={productCardPresentationClassNames.cardPrice}>
-          ${product.salePrice}
-        </p>
-        <button onClick={() => onAddProductToShoppingCart(product)}>Añadir al carrito</button>
-      </div>
     </div>
   );
 };

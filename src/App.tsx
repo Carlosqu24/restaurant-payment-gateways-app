@@ -26,7 +26,7 @@ export function App() {
     },
    
     typography: {
-      fontFamily: `"Inter", "IBM Plex Sans"`,
+      fontFamily: `"IBM Plex Sans", "Inter"`,
       
     },
   });
