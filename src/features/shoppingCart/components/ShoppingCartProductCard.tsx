@@ -3,30 +3,45 @@ import { ShoppingCartProduct } from '../../../models/product'
 
 const shoppingCartProductCardStyles = {
   container: {
-      classNames: "flex items-center py-2 px-6",
+      classNames: "flex items-center py-2 px-2",
       cssStyles: { backgroundColor: "white", color: "black" }
   },
   image: {
-      classNames: "",
+      classNames: "h-24 w-24",
       cssStyles: {
-          height: "100px",
-          width: "100px"
+          // height: "100px",
+          // width: "100px"
       }
   },
   body: {
-      classNames: "flex justify-between items-center pl-5",
+      classNames: "flex justify-between items-center pl-5 text-xs ",
       cssStyles: {
           width: "100%",
           backgroundColor: "white",
           color: "black"
       }
   },
+  title: {
+    classNames: " ",
+    cssStyles: {}
+},
   quantityButtonsContainer: {
       classNames: "flex md:flex-col xl:flex-row flex-col",
       cssStyles: {}
   },
   quantityButtons: {
-      classNames: "xl:mr-10 md:mr-0 sm:mr-10",
+      classNames: `
+        xl:mr-10
+        xl:mb-0
+
+        md:mr-0 
+        md:mb-2
+
+        sm:mr-0
+        sm:mb-2
+
+        mb-2
+      `,
       cssStyles: {}
   },
 }
@@ -51,13 +66,16 @@ const ShoppingCartProductCard = ({
         src={shoppingCartProduct.imageUrl}
         alt=""
         style={shoppingCartProductCardStyles.image.cssStyles}
+        className={shoppingCartProductCardStyles.image.classNames}
       />
       <div
         className={shoppingCartProductCardStyles.body.classNames}
         style={shoppingCartProductCardStyles.body.cssStyles}
       >
-        <div>
-          <h4>{shoppingCartProduct.name}</h4>
+        <div
+        >
+          <h4 className={shoppingCartProductCardStyles.title.classNames}>{shoppingCartProduct.name}</h4>
+          <span>${shoppingCartProduct.salePrice}</span>
           <p>{shoppingCartProduct.category}</p>
         </div>
         
@@ -74,7 +92,7 @@ const ShoppingCartProductCard = ({
           >+</button>
         </div>
 
-        <span>${shoppingCartProduct.salePrice}</span>
+        
 
         <button>x</button>
       </div>

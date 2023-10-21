@@ -5,16 +5,42 @@ import { PurchaseDetails } from '../../../redux/reducers/shoppingCartReducer';
 
 const shoppingCartListContainer = {
   container: {
-      classNames: 'flex flex-col sm:flex-col md:flex-col xl:flex-row',
+      classNames: 'flex flex-col sm:flex-col md:flex-row xl:flex-row',
       cssStyles: {}
   },
   list: {
-      classNames: "grid xl:grid-cols-1 md:grid-cols-2 sm:grid-cols-1 gap-4 2xl:pr-4 xl:pr-4 md:w-full xl:w-full sm:w-full xs:w-full",
+      classNames: "grid xl:grid-cols-1 md:grid-cols-1 md:w-full sm:grid-cols-1 gap-4 md:w-full xl:w-full sm:w-full xs:w-full",
       cssStyles: {}
   },
   orderDetails: {
-      classNames: "w-full mt-5 xl:mt-0 2xl:mt-0 bg-[#FFFFFF] color-[#000000] p-4",
-      cssStyles: {}
+      classNames: `
+        w-full
+
+        p-4
+        mt-3 
+        
+        md:mt-0
+        xl:mt-0 
+        2xl:mt-0
+        2xl:ml-3 
+        xl:ml-3
+        md:ml-3
+        sm:ml-0
+        
+        
+        bg-[#FFFFFF] 
+        color-[#000000]
+        
+        xl:w-7/20
+        w-full
+      `,
+      cssStyles: {
+        // width: "35%",
+        // width: "100%",
+        // width: "30%",
+        backgroundColor: "white",
+        color: "black"
+      }
   }
 }
 
@@ -37,7 +63,6 @@ const ShoppingCartListPresentation = ({
         >
           <ul 
             className={shoppingCartListContainer.list.classNames}
-            // style={{ width: "65%"}}
           >
             {shoppingCartList.length > 0 ? (
               shoppingCartList.map((product, index) => 
@@ -52,11 +77,7 @@ const ShoppingCartListPresentation = ({
             )}
           </ul>
           <div 
-            style={{
-              // width: "35%",
-              backgroundColor: "white",
-              color: "black"
-            }}
+            style={shoppingCartListContainer.orderDetails.cssStyles}
             className={shoppingCartListContainer.orderDetails.classNames}
           >
             <h2>Order Details</h2>
