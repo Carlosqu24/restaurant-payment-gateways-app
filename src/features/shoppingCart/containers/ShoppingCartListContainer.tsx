@@ -13,9 +13,9 @@ const ShoppingCartListContainer = () => {
   } = useSelector((state: RootState) => state.shoppingCart)
   const dispatch = useDispatch()
 
-  console.log({
-    shoppingCartList
-  })
+  // console.log({
+  //   shoppingCartList
+  // })
 
   const onIncrementCartProductQuanitity = (productId: number) => {
     dispatch(incrementShoppingCartProductQuantity(productId))

@@ -16,6 +16,28 @@ const productsReducerInitialState: ProductsState = {
   errorText: null
 }
 
+export const productsReducerTestingState = {
+    data: [{
+      id: 1,
+      name: "Product 1",
+      description: "Description 1",
+      salePrice: 2,
+      rating: 3,
+      imageUrl: "",
+      category: "Meats"
+    }, {
+      id: 2,
+      name: "Product 2",
+      description: "Description 1",
+      salePrice: 6,
+      rating: 7,
+      imageUrl: "",
+      category: "Meats"
+    }],
+    errorText: "",
+    isLoading: false
+}
+
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
   async () => {
@@ -38,7 +60,7 @@ export const productsSlice = createSlice({
     createNewProduct: (state, action) => {
       state.data.push(action.payload)
 
-      console.log({ payload: action.payload, state: current(state) })
+      // console.log({ payload: action.payload, state: current(state) })
     },
     editProduct: () => {
       // const foundProduct = current(state).data.find(product => product.id === action.payload)
@@ -49,7 +71,7 @@ export const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.fulfilled, (state: any, action) => {
-      console.log({ payload: action.payload })
+      // console.log({ payload: action.payload })
       // state.entities.push(action.payload)
       state.data = action.payload
 
