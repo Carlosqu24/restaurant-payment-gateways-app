@@ -31,7 +31,7 @@ const Navbar: FC = (): ReactElement => {
                 width: "100%",
                 height: "auto",
                 backgroundColor: "white",
-                color: "black"
+                color: "black",
             }}
         >
             <Container maxWidth="xl">
@@ -42,6 +42,7 @@ const Navbar: FC = (): ReactElement => {
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
+                            fontFamily: "sans-serif"
                         }}
                     >
                         Food Commerce App
@@ -83,9 +84,12 @@ const Navbar: FC = (): ReactElement => {
                                     color="black"
                                     underline="none"
                                     variant="button"
+                                    style={{
+                                        fontFamily: "sans-serif"
+                                    }}
                                 >
-                                    <MenuItem onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page.title}</Typography>
+                                    <MenuItem sx={{ fontFamily: "sans-serif"}} style={{ fontFamily: "sans-serif"}} onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center" sx={{ fontFamily: "sans-serif"}} style={{ fontFamily: "sans-serif"}}>{page.title}</Typography>
                                     </MenuItem>
                                 </Link>
                             ))}
@@ -117,7 +121,7 @@ const Navbar: FC = (): ReactElement => {
                                     color="black"
                                     underline="none"
                                     variant="button"
-                                    sx={{ fontSize: "large", marginLeft: "2rem", textTransform: "none" }}
+                                    sx={{ fontSize: "large", marginLeft: "2rem", textTransform: "none", fontFamily: "sans-serif" }}
                                 >
                                     {page.title}
                                 </Link>
@@ -130,6 +134,7 @@ const Navbar: FC = (): ReactElement => {
                         underline="none"
                         variant="button"
                         component={NavLink}
+                        sx={{fontFamily: "sans-serif"}}
                     >Shopping Cart</Link>
                     
                 </Toolbar>
