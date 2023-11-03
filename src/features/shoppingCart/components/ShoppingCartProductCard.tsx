@@ -3,22 +3,19 @@ import { ShoppingCartProduct } from '../../../models/product'
 
 const shoppingCartProductCardStyles = {
   container: {
-      classNames: "flex items-center py-2 px-2",
-      cssStyles: { backgroundColor: "white", color: "black" }
+      classNames: "flex items-center py-[32px] border-b-solid border-b-1 border-white last:border-none",
+      cssStyles: { backgroundColor: "transparent", color: "white" }
   },
   image: {
-      classNames: "h-24 w-24",
-      cssStyles: {
-          // height: "100px",
-          // width: "100px"
-      }
+      classNames: "h-20 w-20 md:h-40 md:w-40 object-contain",
+      cssStyles: {}
   },
   body: {
-      classNames: "flex justify-between items-center pl-5 text-xs ",
+      classNames: "flex justify-between items-center pl-1 sm:pl-5 text-xs ",
       cssStyles: {
           width: "100%",
-          backgroundColor: "white",
-          color: "black"
+          backgroundColor: "transparent",
+          color: "white"
       }
   },
   title: {
@@ -26,24 +23,21 @@ const shoppingCartProductCardStyles = {
     cssStyles: {}
 },
   quantityButtonsContainer: {
-      classNames: "flex md:flex-col xl:flex-row flex-col",
+      classNames: "w-[100px] sm:w-[100px] flex flex-row justify-between items-center border-solid border-1 border-white rounded-[64px]",
       cssStyles: {}
   },
   quantityButtons: {
-      classNames: `
-        xl:mr-10
-        xl:mb-0
-
-        md:mr-0 
-        md:mb-2
-
-        sm:mr-0
-        sm:mb-2
-
-        mb-2
-      `,
+      classNames: `mb-0`,
       cssStyles: {}
   },
+  quantityMinusButton: {
+    classNames: `ml-2 p-2`,
+  cssStyles: {}
+  },
+  quantityPlusButton: {
+    classNames: `mr-2 p-2`,
+  cssStyles: {}
+  }
 }
 
 interface ShoppingCartProductCardProps {
@@ -74,27 +68,35 @@ const ShoppingCartProductCard = ({
       >
         <div
         >
+          <div className='mb-[8px]'>
           <h4 className={shoppingCartProductCardStyles.title.classNames}>{shoppingCartProduct.name}</h4>
-          <span>${shoppingCartProduct.salePrice}</span>
           <p>{shoppingCartProduct.category}</p>
+          </div>
+
+          <span>${shoppingCartProduct.salePrice} / unit</span>
+
+          <div className='flex items-center mt-[16px]'>
+            <div className={shoppingCartProductCardStyles.quantityButtonsContainer.classNames}>
+              <button
+                className={shoppingCartProductCardStyles.quantityMinusButton.classNames}
+                onClick={() => onDecrementCartProductQuanitity(shoppingCartProduct.id)}
+              >-</button>
+              <span
+              
+              >{shoppingCartProduct.quantity}</span>
+              <button
+              className={shoppingCartProductCardStyles.quantityPlusButton.classNames}
+                onClick={() => onIncrementCartProductQuanitity(shoppingCartProduct.id)}
+              >+</button>
+            </div>
+
+            <span className='ml-[15px]'>Delete product</span>
+          </div>
         </div>
         
-        <div className={shoppingCartProductCardStyles.quantityButtonsContainer.classNames}>
-          <button
-            className={shoppingCartProductCardStyles.quantityButtons.classNames}
-            onClick={() => onDecrementCartProductQuanitity(shoppingCartProduct.id)}
-          >-</button>
-          <span
-            className={shoppingCartProductCardStyles.quantityButtons.classNames}
-          >{shoppingCartProduct.quantity}</span>
-          <button
-            onClick={() => onIncrementCartProductQuanitity(shoppingCartProduct.id)}
-          >+</button>
-        </div>
+       
 
-        
-
-        <button>x</button>
+        <span className='self-start'>${shoppingCartProduct.quantity * shoppingCartProduct.salePrice}</span>
       </div>
     </div>
   )
