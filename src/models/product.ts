@@ -19,5 +19,6 @@ export enum PRODUCT_CATEGORIES {
 }
 
 export interface ShoppingCartProduct extends Product {
-    quantity: number
+    quantity: number,
+    totalPrice: number
 }
