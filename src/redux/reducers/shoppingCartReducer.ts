@@ -42,7 +42,14 @@ export const shoppingCartSlice = createSlice({
     initialState: shoppingCartInitialState,
     reducers: {
         addShoppingCartProduct: (state, action) => {
-            state.dataList.push(action.payload)
+
+            const newCartProduct: ShoppingCartProduct = {
+                ...action.payload,
+                quantity: 1,
+                totalPrice: 1 * action.payload.salePrice
+            }
+
+            state.dataList.push(newCartProduct)
 
 
             // Calculate purchaseDetails
@@ -62,9 +69,12 @@ export const shoppingCartSlice = createSlice({
             const cartProductId = action.payload
             const foundCartProduct = current(state).dataList.find(cartProduct => cartProduct.id === cartProductId)
 
-            const editedCartProduct = {
+            const newCartProductQuantity = foundCartProduct?.quantity + 1
+
+            const editedCartProduct: ShoppingCartProduct = {
                 ...foundCartProduct,
-                quantity: foundCartProduct?.quantity + 1
+                quantity: newCartProductQuantity,
+                totalPrice: newCartProductQuantity * foundCartProduct?.salePrice
             }
 
             const filteredData = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
@@ -93,12 +103,16 @@ export const shoppingCartSlice = createSlice({
             const cartProductId = action.payload
             const foundCartProduct = current(state).dataList.find(cartProduct => cartProduct.id === cartProductId)
 
-            const editedCartProduct = {
+
+            const newCartProductQuantity =
+                foundCartProduct?.quantity === 0
+                    ? foundCartProduct?.quantity
+                    : foundCartProduct?.quantity - 1
+
+            const editedCartProduct: ShoppingCartProduct = {
                 ...foundCartProduct,
-                quantity:
-                    foundCartProduct?.quantity === 0
-                        ? foundCartProduct?.quantity
-                        : foundCartProduct?.quantity - 1
+                quantity: newCartProductQuantity,
+                totalPrice: newCartProductQuantity * foundCartProduct?.salePrice
             }
 
             const filteredData = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)

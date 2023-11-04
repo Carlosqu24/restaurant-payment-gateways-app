@@ -16,15 +16,9 @@ const ProductsListContainer = () => {
     dispatch(fetchAllProducts())
   }, []);
 
-  const onAddProductToShoppingCart = (product: Product) => {
-
-    const newCartProduct: ShoppingCartProduct = {
-      ...product,
-      quantity: 1
-    }
-
-    dispatch(addShoppingCartProduct(newCartProduct))
-  }
+  const onAddProductToShoppingCart = (product: Product) =>
+    dispatch(addShoppingCartProduct(product))
+  
 
   return <ProductListPresentation 
         products={productsList} 
