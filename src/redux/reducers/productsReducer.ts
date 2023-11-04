@@ -3,6 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 import { PRODUCT_CATEGORIES, Product } from "../../models/product"
 import { getAllProducts } from '../../services/product'
+import { products } from '../../db/product'
+import { productToProductUIMapper } from '../../features/products/mappers'
 
 interface ProductsState {
   data: Product[],
@@ -17,23 +19,7 @@ const productsReducerInitialState: ProductsState = {
 }
 
 export const productsReducerTestingState = {
-  data: [{
-    id: 1,
-    name: "Product 1",
-    description: "Description 1",
-    salePrice: 2,
-    rating: 3,
-    imageUrl: "",
-    category: PRODUCT_CATEGORIES.MEATS
-  }, {
-    id: 2,
-    name: "Product 2",
-    description: "Description 1",
-    salePrice: 6,
-    rating: 7,
-    imageUrl: "",
-    category: PRODUCT_CATEGORIES.MEATS
-  }],
+  data: products.map(productToProductUIMapper),
   errorText: "",
   isLoading: false
 }
@@ -42,7 +28,7 @@ export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
   async () => {
     const response = await getAllProducts()
-    return response
+    return response.map(productToProductUIMapper)
   }
 )
 
