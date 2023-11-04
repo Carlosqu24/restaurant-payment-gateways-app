@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import { Product } from "../../models/product"
+import { PRODUCT_CATEGORIES, Product } from "../../models/product"
 import { getAllProducts } from '../../services/product'
 
 interface ProductsState {
@@ -17,25 +17,25 @@ const productsReducerInitialState: ProductsState = {
 }
 
 export const productsReducerTestingState = {
-    data: [{
-      id: 1,
-      name: "Product 1",
-      description: "Description 1",
-      salePrice: 2,
-      rating: 3,
-      imageUrl: "",
-      category: "Meats"
-    }, {
-      id: 2,
-      name: "Product 2",
-      description: "Description 1",
-      salePrice: 6,
-      rating: 7,
-      imageUrl: "",
-      category: "Meats"
-    }],
-    errorText: "",
-    isLoading: false
+  data: [{
+    id: 1,
+    name: "Product 1",
+    description: "Description 1",
+    salePrice: 2,
+    rating: 3,
+    imageUrl: "",
+    category: PRODUCT_CATEGORIES.MEATS
+  }, {
+    id: 2,
+    name: "Product 2",
+    description: "Description 1",
+    salePrice: 6,
+    rating: 7,
+    imageUrl: "",
+    category: PRODUCT_CATEGORIES.MEATS
+  }],
+  errorText: "",
+  isLoading: false
 }
 
 export const fetchAllProducts = createAsyncThunk(
