@@ -96,7 +96,7 @@ const ShoppingCartProductCard = ({
         
        
 
-        <span className='self-start'>${shoppingCartProduct.quantity * shoppingCartProduct.salePrice}</span>
+        <span className='self-start'>${shoppingCartProduct.totalPrice}</span>
       </div>
     </div>
   )
