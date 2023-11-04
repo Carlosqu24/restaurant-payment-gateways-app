@@ -1,7 +1,10 @@
 // @ts-nocheck
 import { createSlice, current } from '@reduxjs/toolkit'
 
-import { ShoppingCartProduct } from "../../models/product"
+import { ShoppingCartProduct, ShoppingCartProductUI } from "../../models/product"
+import { products } from '../../db/product'
+import { formatMoney, reverseFormatMoney } from '../../utils/money'
+import { productUIToProductMapper, shoppingCartProductToShoppingCartProductUIMapper, shoppingCartProductUIToShoppingCartProductMapper } from '../../features/products/mappers'
 
 // interface PurchaseDetails {
 //     subtotal: 0,
@@ -43,17 +46,21 @@ export const shoppingCartSlice = createSlice({
     reducers: {
         addShoppingCartProduct: (state, action) => {
 
+            const product = productUIToProductMapper(action.payload)
+
             const newCartProduct: ShoppingCartProduct = {
-                ...action.payload,
+                ...product,
                 quantity: 1,
-                totalPrice: 1 * action.payload.salePrice
+                totalPrice: 1 * product.salePrice
             }
 
-            state.dataList.push(newCartProduct)
+            const newCartProductFormetted: ShoppingCartProductUI = shoppingCartProductToShoppingCartProductUIMapper(newCartProduct)
+
+            state.dataList.push(newCartProductFormetted)
+
 
 
             // Calculate purchaseDetails
-
             const subTotal = state.dataList.reduce(
                 (prev, actual) => prev + (actual.salePrice * actual.quantity),
                 0
@@ -67,41 +74,52 @@ export const shoppingCartSlice = createSlice({
         },
         incrementShoppingCartProductQuantity: (state, action) => {
             const cartProductId = action.payload
-            const foundCartProduct = current(state).dataList.find(cartProduct => cartProduct.id === cartProductId)
+            const foundCartProduct =
+                current(state)
+                    .dataList
+                    .find(cartProduct => cartProduct.id === cartProductId)
+
+            const unformattedCartProduct = shoppingCartProductUIToShoppingCartProductMapper(foundCartProduct)
 
             const newCartProductQuantity = foundCartProduct?.quantity + 1
 
             const editedCartProduct: ShoppingCartProduct = {
-                ...foundCartProduct,
+                ...unformattedCartProduct,
                 quantity: newCartProductQuantity,
-                totalPrice: newCartProductQuantity * foundCartProduct?.salePrice
+                totalPrice: newCartProductQuantity * unformattedCartProduct?.salePrice
             }
+
+            const formattedEditedCartProduct = shoppingCartProductToShoppingCartProductUIMapper(editedCartProduct)
 
             const filteredData = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
 
             const finalData = [
                 ...filteredData,
-                editedCartProduct
+                formattedEditedCartProduct
             ]
 
             state.dataList = finalData
 
-            // Calculate purchaseDetails
 
+
+            // Calculate purchaseDetails
             const subTotal = finalData.reduce(
-                (prev, actual) => prev + (actual.salePrice * actual.quantity),
+                (prev, actual) => prev + (
+                    shoppingCartProductUIToShoppingCartProductMapper(actual).salePrice * actual.quantity),
                 0
             )
             const taxAmount = subTotal * 0.13
             const total = subTotal + taxAmount
 
-            state.purchaseDetails.subTotal = subTotal
-            state.purchaseDetails.taxAmount = taxAmount
-            state.purchaseDetails.total = total
+            state.purchaseDetails.subTotal = formatMoney(subTotal)
+            state.purchaseDetails.taxAmount = formatMoney(taxAmount)
+            state.purchaseDetails.total = formatMoney(total)
         },
         decrementShoppingCartProductQuantity: (state, action) => {
             const cartProductId = action.payload
             const foundCartProduct = current(state).dataList.find(cartProduct => cartProduct.id === cartProductId)
+
+            const unformattedCartProduct = shoppingCartProductUIToShoppingCartProductMapper(foundCartProduct)
 
 
             const newCartProductQuantity =
@@ -110,32 +128,37 @@ export const shoppingCartSlice = createSlice({
                     : foundCartProduct?.quantity - 1
 
             const editedCartProduct: ShoppingCartProduct = {
-                ...foundCartProduct,
+                ...unformattedCartProduct,
                 quantity: newCartProductQuantity,
-                totalPrice: newCartProductQuantity * foundCartProduct?.salePrice
+                totalPrice: newCartProductQuantity * unformattedCartProduct?.salePrice
             }
+
+            const formattedEditedCartProduct = shoppingCartProductToShoppingCartProductUIMapper(editedCartProduct)
 
             const filteredData = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
 
             const finalData = [
                 ...filteredData,
-                editedCartProduct
+                formattedEditedCartProduct
             ]
 
             state.dataList = finalData
 
-            // Calculate purchaseDetails
 
+
+            // Calculate purchaseDetails
             const subTotal = finalData.reduce(
-                (prev, actual) => prev + (actual.salePrice * actual.quantity),
+                (prev, actual) => prev + (
+                    shoppingCartProductUIToShoppingCartProductMapper(actual)
+                        .salePrice * actual.quantity),
                 0
             )
             const taxAmount = subTotal * 0.13
             const total = subTotal + taxAmount
 
-            state.purchaseDetails.subTotal = subTotal
-            state.purchaseDetails.taxAmount = taxAmount
-            state.purchaseDetails.total = total
+            state.purchaseDetails.subTotal = formatMoney(subTotal)
+            state.purchaseDetails.taxAmount = formatMoney(taxAmount)
+            state.purchaseDetails.total = formatMoney(total)
         },
         resetShoppingCart: (state, action) => {
             state.dataList = shoppingCartInitialState.dataList
