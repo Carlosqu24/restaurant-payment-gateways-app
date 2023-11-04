@@ -3,7 +3,7 @@ import { ShoppingCartProduct } from '../../../models/product'
 
 const shoppingCartProductCardStyles = {
   container: {
-      classNames: "flex items-center py-[32px] border-b-solid border-b-1 border-white last:border-none",
+      classNames: "flex items-center py-[32px] px-[15px] border-b-solid border-b-1 border-white last:border-none",
       cssStyles: { backgroundColor: "transparent", color: "white" }
   },
   image: {
