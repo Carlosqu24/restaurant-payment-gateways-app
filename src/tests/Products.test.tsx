@@ -10,7 +10,7 @@ import ProductsListContainer from "../features/products/containers/ProductsListC
 import ProductPageObject from "./pageObjects/ProductPageObject";
 import { productsReducerTestingState } from "../redux/reducers/productsReducer";
 import { screen } from "@testing-library/react";
-import { Product } from "../models/product";
+import { Product, ProductUI } from "../models/product";
 
 describe("ProductsList Component", () => {
   it("Shoud list the products", () => {
@@ -25,7 +25,7 @@ describe("ProductsList Component", () => {
 
     const productsPage = new ProductPageObject(screen);
 
-    const productList: Product[] = productsReducerTestingState.data
+    const productList: ProductUI[] = productsReducerTestingState.data
 
     expect(container).toMatchSnapshot()
 
