@@ -23,7 +23,7 @@ const orderDetailsStyles = {
           bg-[transparent] 
           color-[#000]
           
-          xl:w-7/20
+          xl:w-12/20
 
         `,
         cssStyles: {
