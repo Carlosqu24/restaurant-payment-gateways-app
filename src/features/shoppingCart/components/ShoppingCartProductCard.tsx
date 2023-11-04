@@ -73,7 +73,7 @@ const ShoppingCartProductCard = ({
           <p>{shoppingCartProduct.category}</p>
           </div>
 
-          <span>${shoppingCartProduct.salePrice} / unit</span>
+          <span>{shoppingCartProduct.salePrice} / unit</span>
 
           <div className='flex items-center mt-[16px]'>
             <div className={shoppingCartProductCardStyles.quantityButtonsContainer.classNames}>
@@ -96,7 +96,7 @@ const ShoppingCartProductCard = ({
         
        
 
-        <span className='self-start'>${shoppingCartProduct.totalPrice}</span>
+        <span className='self-start'>{shoppingCartProduct.totalPrice}</span>
       </div>
     </div>
   )
