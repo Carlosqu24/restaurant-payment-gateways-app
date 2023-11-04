@@ -26,3 +26,8 @@ export interface ShoppingCartProduct extends Product {
     quantity: number,
     totalPrice: number
 }
+
+export interface ShoppingCartProductUI extends Omit<ShoppingCartProduct, "salePrice" | "totalPrice"> {
+    salePrice: string,
+    totalPrice: string
+}
