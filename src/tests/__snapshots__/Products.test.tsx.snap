@@ -1,0 +1,282 @@
+// Vitest Snapshot v1
+
+exports[`ProductsList Component > Shoud list the products 1`] = `
+<div>
+   
+  <ul
+    class="grid xl:grid-cols-4 md:grid-cols-2 gap-4"
+  >
+    <div
+      class="
+    mt-6 
+    flex 
+    flex-col 
+    self-start 
+    rounded-lg 
+    shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] 
+    sm:shrink-0 
+    sm:grow 
+    sm:basis-0 
+    cursor-pointer 
+    bg-transparent 
+  "
+    >
+      <div
+        class="p-6"
+        style="background: rgba(117, 117, 117, 0.396); display: flex; align-items: center; justify-content: center;"
+      >
+        <img
+          alt="Hollywood Sign on The Hill"
+          class="rounded-t-lg"
+          src="products/transparent-bbq-ribs.png"
+          style="height: 200px; object-fit: contain;"
+        />
+      </div>
+      <div
+        class="py-6 flex justify-between"
+      >
+        <div>
+          <h5
+            class="mb-2 text-xl font-medium leading-tight font-extrabold"
+          >
+            Costillas de cerdo BBQ
+          </h5>
+          <p
+            class="font-extrabold"
+          >
+            $13.20
+          </p>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium cursor-pointer css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddShoppingCartIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="
+    mt-6 
+    flex 
+    flex-col 
+    self-start 
+    rounded-lg 
+    shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] 
+    sm:shrink-0 
+    sm:grow 
+    sm:basis-0 
+    cursor-pointer 
+    bg-transparent 
+  "
+    >
+      <div
+        class="p-6"
+        style="background: rgba(117, 117, 117, 0.396); display: flex; align-items: center; justify-content: center;"
+      >
+        <img
+          alt="Hollywood Sign on The Hill"
+          class="rounded-t-lg"
+          src="products/transparent-cheese-jam-pizza.png"
+          style="height: 200px; object-fit: contain;"
+        />
+      </div>
+      <div
+        class="py-6 flex justify-between"
+      >
+        <div>
+          <h5
+            class="mb-2 text-xl font-medium leading-tight font-extrabold"
+          >
+            Pizza Jamón y Queso
+          </h5>
+          <p
+            class="font-extrabold"
+          >
+            $19.50
+          </p>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium cursor-pointer css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddShoppingCartIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="
+    mt-6 
+    flex 
+    flex-col 
+    self-start 
+    rounded-lg 
+    shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] 
+    sm:shrink-0 
+    sm:grow 
+    sm:basis-0 
+    cursor-pointer 
+    bg-transparent 
+  "
+    >
+      <div
+        class="p-6"
+        style="background: rgba(117, 117, 117, 0.396); display: flex; align-items: center; justify-content: center;"
+      >
+        <img
+          alt="Hollywood Sign on The Hill"
+          class="rounded-t-lg"
+          src="products/transparent-carbonara-noodles.png"
+          style="height: 200px; object-fit: contain;"
+        />
+      </div>
+      <div
+        class="py-6 flex justify-between"
+      >
+        <div>
+          <h5
+            class="mb-2 text-xl font-medium leading-tight font-extrabold"
+          >
+            Spaghetti Carbonara
+          </h5>
+          <p
+            class="font-extrabold"
+          >
+            $11.80
+          </p>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium cursor-pointer css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddShoppingCartIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="
+    mt-6 
+    flex 
+    flex-col 
+    self-start 
+    rounded-lg 
+    shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] 
+    sm:shrink-0 
+    sm:grow 
+    sm:basis-0 
+    cursor-pointer 
+    bg-transparent 
+  "
+    >
+      <div
+        class="p-6"
+        style="background: rgba(117, 117, 117, 0.396); display: flex; align-items: center; justify-content: center;"
+      >
+        <img
+          alt="Hollywood Sign on The Hill"
+          class="rounded-t-lg"
+          src="products/transparent-cheeseburger.png"
+          style="height: 200px; object-fit: contain;"
+        />
+      </div>
+      <div
+        class="py-6 flex justify-between"
+      >
+        <div>
+          <h5
+            class="mb-2 text-xl font-medium leading-tight font-extrabold"
+          >
+            Hamburguesa de queso
+          </h5>
+          <p
+            class="font-extrabold"
+          >
+            $6.85
+          </p>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium cursor-pointer css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddShoppingCartIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="
+    mt-6 
+    flex 
+    flex-col 
+    self-start 
+    rounded-lg 
+    shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] 
+    sm:shrink-0 
+    sm:grow 
+    sm:basis-0 
+    cursor-pointer 
+    bg-transparent 
+  "
+    >
+      <div
+        class="p-6"
+        style="background: rgba(117, 117, 117, 0.396); display: flex; align-items: center; justify-content: center;"
+      >
+        <img
+          alt="Hollywood Sign on The Hill"
+          class="rounded-t-lg"
+          src="products/transparent-french-fries.png"
+          style="height: 200px; object-fit: contain;"
+        />
+      </div>
+      <div
+        class="py-6 flex justify-between"
+      >
+        <div>
+          <h5
+            class="mb-2 text-xl font-medium leading-tight font-extrabold"
+          >
+            Papas fritas
+          </h5>
+          <p
+            class="font-extrabold"
+          >
+            $1.50
+          </p>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium cursor-pointer css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddShoppingCartIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"
+          />
+        </svg>
+      </div>
+    </div>
+  </ul>
+   
+</div>
+`;
