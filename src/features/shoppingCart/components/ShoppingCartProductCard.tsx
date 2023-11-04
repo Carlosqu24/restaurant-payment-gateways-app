@@ -11,7 +11,7 @@ const shoppingCartProductCardStyles = {
       cssStyles: {}
   },
   body: {
-      classNames: "flex justify-between items-center pl-1 sm:pl-5 text-xs ",
+      classNames: "flex justify-between items-center pl-1 sm:pl-5 text-xs sm:text-base ",
       cssStyles: {
           width: "100%",
           backgroundColor: "transparent",
@@ -19,7 +19,7 @@ const shoppingCartProductCardStyles = {
       }
   },
   title: {
-    classNames: " ",
+    classNames: "",
     cssStyles: {}
 },
   quantityButtonsContainer: {
