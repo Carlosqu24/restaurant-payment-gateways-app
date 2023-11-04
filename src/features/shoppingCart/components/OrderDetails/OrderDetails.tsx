@@ -5,8 +5,10 @@ const orderDetailsStyles = {
     orderDetails: {
         classNames: `
           w-full
+          h-fit
   
-          p-4
+          lg:p-4
+          p-0
           mt-3 
           
           md:mt-0
@@ -14,22 +16,23 @@ const orderDetailsStyles = {
           2xl:mt-0
           2xl:ml-3 
           xl:ml-3
-          md:ml-3
-          sm:ml-0
+          lg:ml-3
+          ml-0
           
           
-          bg-[#FFFFFF] 
-          color-[#000000]
+          bg-[transparent] 
+          color-[#000]
           
           xl:w-7/20
-          w-full
+          
         `,
         cssStyles: {
           // width: "35%",
           // width: "100%",
           // width: "30%",
-          backgroundColor: "white",
-          color: "black"
+
+          backgroundColor: "transparent",
+          color: "white",
         }
     }
   }

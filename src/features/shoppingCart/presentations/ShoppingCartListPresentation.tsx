@@ -6,11 +6,11 @@ import OrderDetails from '../components/OrderDetails/OrderDetails';
 
 const shoppingCartListContainerStyles = {
   container: {
-      classNames: 'flex flex-col sm:flex-col md:flex-row xl:flex-row',
+      classNames: 'flex flex-col lg:flex-row xl:flex-row',
       cssStyles: {}
   },
   list: {
-      classNames: "grid xl:grid-cols-1 md:grid-cols-1 md:w-full sm:grid-cols-1 gap-4 md:w-full xl:w-full sm:w-full xs:w-full",
+      classNames: "grid xl:grid-cols-1 md:grid-cols-1 md:w-full sm:grid-cols-1 md:w-full xl:w-full sm:w-full xs:w-full",
       cssStyles: {}
   },
 }
