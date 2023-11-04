@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { Screen } from "@testing-library/react";
-import { Product } from "../../models/product";
+import { Product, ProductUI } from "../../models/product";
 
 export default class ProductPageObject {
   constructor(screen: Screen) {
@@ -14,10 +14,10 @@ export default class ProductPageObject {
     return this.screen.getAllByRole("heading", { level: 5, value: "a" })
   }
 
-  allProductsWereRendered(productsList: Product[]) {
+  allProductsWereRendered(productsList: ProductUI[]) {
     productsList.map(product => {
       this.screen.getByText(product.name)
-      this.screen.getByText(`$${product.salePrice}`)
+      this.screen.getByText(product.salePrice)
     })
   }
 

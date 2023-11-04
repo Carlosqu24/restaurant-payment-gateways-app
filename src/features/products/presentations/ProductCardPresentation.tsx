@@ -54,7 +54,7 @@ const ProductCardPresentation = ({ product, onAddProductToShoppingCart }: Produc
             {product.name}
           </h5>
           <p className={productCardPresentationClassNames.cardPrice}>
-            ${product.salePrice}
+            {product.salePrice}
           </p>
         </div>
 
