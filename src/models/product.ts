@@ -18,6 +18,10 @@ export enum PRODUCT_CATEGORIES {
     APPETITIZERS = "Appetitizers"
 }
 
+export interface ProductUI extends Omit<Product, "salePrice"> {
+    salePrice: string
+}
+
 export interface ShoppingCartProduct extends Product {
     quantity: number,
     totalPrice: number
