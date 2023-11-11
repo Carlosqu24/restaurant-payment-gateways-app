@@ -41,3 +41,28 @@ export const products: Product[] = [{
     imageUrl: "products/transparent-french-fries.png",
     category: "Appetitizers"
 }]
+
+export const shoppingCartProducts = [
+    {
+        "id": 3,
+        "name": "Spaghetti Carbonara",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
+        "salePrice": "$11.80",
+        "rating": 4.2,
+        "imageUrl": "products/transparent-carbonara-noodles.png",
+        "category": "Pastas",
+        "quantity": 1,
+        "totalPrice": "$11.80"
+    },
+    {
+        "id": 2,
+        "name": "Pizza Jamón y Queso",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
+        "salePrice": "$19.50",
+        "rating": 4.2,
+        "imageUrl": "products/transparent-cheese-jam-pizza.png",
+        "category": "Pizzas",
+        "quantity": 1,
+        "totalPrice": "$19.50"
+    }
+]

@@ -2,7 +2,7 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 
 import { ShoppingCartProduct, ShoppingCartProductUI } from "../../models/product"
-import { products } from '../../db/product'
+import { products, shoppingCartProducts } from '../../db/product'
 import { formatMoney, reverseFormatMoney } from '../../utils/money'
 import { productUIToProductMapper, shoppingCartProductToShoppingCartProductUIMapper, shoppingCartProductUIToShoppingCartProductMapper } from '../../features/products/mappers'
 
@@ -33,6 +33,19 @@ const shoppingCartInitialState: ShoppingCartState = {
     dataList: [],
     isLoading: false,
     errorText: null,
+    purchaseDetails: {
+        subTotal: 0,
+        taxAmount: 0,
+        total: 0,
+    }
+}
+
+export const shoppingCartReducerTestingEmptyState = shoppingCartInitialState
+
+export const shoppingCartReducerTestingState = {
+    dataList: shoppingCartProducts,
+    errorText: "",
+    isLoading: false,
     purchaseDetails: {
         subTotal: 0,
         taxAmount: 0,
