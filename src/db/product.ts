@@ -1,4 +1,4 @@
-import { Product } from "../models/product";
+import { Product, ShoppingCartProductUI } from "../models/product";
 
 export const products: Product[] = [{
     id: 1,
@@ -42,7 +42,18 @@ export const products: Product[] = [{
     category: "Appetitizers"
 }]
 
-export const shoppingCartProducts = [
+export const shoppingCartProducts: ShoppingCartProductUI[] = [
+    {
+        "id": 1,
+        "name": "Costillas de cerdo BBQ",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ipsum corrupti deserunt consectetur dolore.",
+        "salePrice": "$13.20",
+        "rating": 4.2,
+        "imageUrl": "products/transparent-bbq-ribs.png",
+        "category": "Meats",
+        "quantity": 1,
+        "totalPrice": "$13.20"
+    },
     {
         "id": 3,
         "name": "Spaghetti Carbonara",
