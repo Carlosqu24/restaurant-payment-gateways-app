@@ -2,6 +2,7 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 
 import { ShoppingCartProduct } from "../../models/product"
+import { shoppingCartProducts } from '../../db/product'
 
 // interface PurchaseDetails {
 //     subtotal: 0,
@@ -30,6 +31,19 @@ const shoppingCartInitialState: ShoppingCartState = {
     dataList: [],
     isLoading: false,
     errorText: null,
+    purchaseDetails: {
+        subTotal: 0,
+        taxAmount: 0,
+        total: 0,
+    }
+}
+
+export const shoppingCartReducerTestingEmptyState = shoppingCartInitialState
+
+export const shoppingCartReducerTestingState = {
+    dataList: shoppingCartProducts,
+    errorText: "",
+    isLoading: false,
     purchaseDetails: {
         subTotal: 0,
         taxAmount: 0,
