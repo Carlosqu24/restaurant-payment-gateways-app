@@ -2,9 +2,9 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 
 import { ShoppingCartProduct, ShoppingCartProductUI } from "../../models/product"
-import { products, shoppingCartProducts } from '../../db/product'
-import { formatMoney, reverseFormatMoney } from '../../utils/money'
-import { productUIToProductMapper, shoppingCartProductToShoppingCartProductUIMapper, shoppingCartProductUIToShoppingCartProductMapper } from '../../features/products/mappers'
+import { shoppingCartProducts } from '../../db/product'
+import { formatMoney } from '../../utils/money'
+import { productToShoppingCartProductMapper, productUIToProductMapper, shoppingCartProductToShoppingCartProductUIMapper, shoppingCartProductUIToShoppingCartProductMapper } from '../../features/products/mappers'
 
 // interface PurchaseDetails {
 //     subtotal: 0,
@@ -34,9 +34,9 @@ const shoppingCartInitialState: ShoppingCartState = {
     isLoading: false,
     errorText: null,
     purchaseDetails: {
-        subTotal: 0,
-        taxAmount: 0,
-        total: 0,
+        subTotal: formatMoney(0),
+        taxAmount: formatMoney(0),
+        total: formatMoney(0),
     }
 }
 
@@ -61,11 +61,7 @@ export const shoppingCartSlice = createSlice({
 
             const product = productUIToProductMapper(action.payload)
 
-            const newCartProduct: ShoppingCartProduct = {
-                ...product,
-                quantity: 1,
-                totalPrice: 1 * product.salePrice
-            }
+            const newCartProduct = productToShoppingCartProductMapper(product)
 
             const newCartProductFormetted: ShoppingCartProductUI = shoppingCartProductToShoppingCartProductUIMapper(newCartProduct)
 
@@ -75,15 +71,18 @@ export const shoppingCartSlice = createSlice({
 
             // Calculate purchaseDetails
             const subTotal = state.dataList.reduce(
-                (prev, actual) => prev + (actual.salePrice * actual.quantity),
+                (prev, actual) =>
+                    prev + (
+                        productUIToProductMapper(actual).salePrice * productUIToProductMapper(actual).quantity
+                    ),
                 0
             )
             const taxAmount = subTotal * 0.13
             const total = subTotal + taxAmount
 
-            state.purchaseDetails.subTotal = subTotal
-            state.purchaseDetails.taxAmount = taxAmount
-            state.purchaseDetails.total = total
+            state.purchaseDetails.subTotal = formatMoney(subTotal)
+            state.purchaseDetails.taxAmount = formatMoney(taxAmount)
+            state.purchaseDetails.total = formatMoney(total)
         },
         incrementShoppingCartProductQuantity: (state, action) => {
             const cartProductId = action.payload
