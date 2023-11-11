@@ -11,6 +11,8 @@ import { shoppingCartReducerTestingEmptyState, shoppingCartReducerTestingState }
 import ProductsListContainer from "../features/products/containers/ProductsListContainer";
 import { productsReducerTestingState } from "../redux/reducers/productsReducer";
 import { ProductUI } from "../models/product";
+import { shoppingCartProductUIToShoppingCartProductMapper } from "../features/products/mappers";
+import { formatMoney } from "../utils/money";
 
 describe("ShoppingCart Component", () => {
   describe("ShoppingCartList", () => {
@@ -247,6 +249,8 @@ describe("ShoppingCart Component", () => {
 
       const productList: ProductUI[] = productsReducerTestingState.data
       const firstProduct = productList[0]
+      const shoppingCartProductsList = shoppingCartReducerTestingState.dataList
+      const firstShoppingCartProduct = shoppingCartProductsList[0]
 
       const addToCartButtonList = screen.getAllByTestId("AddShoppingCartIcon")
       const firstAddToCartButton = addToCartButtonList[0]
@@ -257,11 +261,15 @@ describe("ShoppingCart Component", () => {
       const taxAmountTag = screen.getByTestId("purchaseDetails-taxAmount")
       const totalTag = screen.getByTestId("purchaseDetails-total")
 
-      console.log({firstProduct})
+      const expectedValues = {
+        subTotal: shoppingCartProductUIToShoppingCartProductMapper(firstShoppingCartProduct).totalPrice,
+        tax: shoppingCartProductUIToShoppingCartProductMapper(firstShoppingCartProduct).totalPrice * 0.13,
+        total: shoppingCartProductUIToShoppingCartProductMapper(firstShoppingCartProduct).totalPrice + (shoppingCartProductUIToShoppingCartProductMapper(firstShoppingCartProduct).totalPrice * 0.13)
+      }
 
-      expect(subTotalTag.textContent).toBe("$13.20")
-      expect(taxAmountTag.textContent).toBe("$1.72")
-      expect(totalTag.textContent).toBe("$14.92")
+      expect(subTotalTag.textContent).toBe(formatMoney(expectedValues.subTotal))
+      expect(taxAmountTag.textContent).toBe(formatMoney(expectedValues.tax))
+      expect(totalTag.textContent).toBe(formatMoney(expectedValues.total))
     })
   })
 });
