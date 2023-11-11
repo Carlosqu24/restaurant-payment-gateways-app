@@ -107,8 +107,8 @@ export const shoppingCartSlice = createSlice({
             const filteredData = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
 
             const finalData = [
+                formattedEditedCartProduct,
                 ...filteredData,
-                formattedEditedCartProduct
             ]
 
             state.dataList = finalData
@@ -136,7 +136,7 @@ export const shoppingCartSlice = createSlice({
 
 
             const newCartProductQuantity =
-                foundCartProduct?.quantity === 0
+                foundCartProduct?.quantity === 1
                     ? foundCartProduct?.quantity
                     : foundCartProduct?.quantity - 1
 
@@ -151,8 +151,8 @@ export const shoppingCartSlice = createSlice({
             const filteredData = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
 
             const finalData = [
+                formattedEditedCartProduct,
                 ...filteredData,
-                formattedEditedCartProduct
             ]
 
             state.dataList = finalData
