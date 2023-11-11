@@ -51,17 +51,17 @@ const OrderDetails = ({ purchaseDetails }: OrderDetailProps) => {
 
             <div className="flex justify-between text-[15px] text-[#d1d1d1] mb-[6px]">
               <p>Subtotal Amount</p>
-              <p className='font-bold'>{purchaseDetails?.subTotal ?? 0}</p>
+              <p data-testid="purchaseDetails-subtotal" className='font-bold'>{purchaseDetails?.subTotal ?? 0}</p>
             </div>
 
             <div className="flex justify-between text-[15px] text-[#d1d1d1] mb-[6px]">
               <p>Taxes Amount</p>
-              <p className='font-bold'>{purchaseDetails?.taxAmount ?? 0}</p>
+              <p data-testid="purchaseDetails-taxAmount" className='font-bold'>{purchaseDetails?.taxAmount ?? 0}</p>
             </div>
 
             <div className="flex justify-between mt-[14px] py-[14px] border-t-solid border-t-1 border-white">
               <p className='font-bold text-[18px]'>Total</p>
-              <p className='font-bold text-[18px]'>{purchaseDetails?.total ?? 0}</p>
+              <p data-testid="purchaseDetails-total" className='font-bold text-[18px]'>{purchaseDetails?.total ?? 0}</p>
             </div>
 
             <button className='mt-6 w-full py-2 px-6 bg-black text-white'>Pay</button>
