@@ -82,7 +82,7 @@ const ShoppingCartProductCard = ({
                 onClick={() => onDecrementCartProductQuanitity(shoppingCartProduct.id)}
               >-</button>
               <span
-              
+                data-testid={`shoppingCartProductQuantity-` + shoppingCartProduct.id}
               >{shoppingCartProduct.quantity}</span>
               <button
               className={shoppingCartProductCardStyles.quantityPlusButton.classNames}
