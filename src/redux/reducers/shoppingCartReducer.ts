@@ -172,6 +172,13 @@ export const shoppingCartSlice = createSlice({
             state.purchaseDetails.taxAmount = formatMoney(taxAmount)
             state.purchaseDetails.total = formatMoney(total)
         },
+        deleteShoppingCartProduct: (state, action) => {
+            const cartProductId = action.payload
+
+            const filteredShoppingCart = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
+
+            state.dataList = filteredShoppingCart
+        },
         resetShoppingCart: (state, action) => {
             state.dataList = shoppingCartInitialState.dataList
             state.errorText = shoppingCartInitialState.errorText
@@ -186,6 +193,11 @@ export const shoppingCartSlice = createSlice({
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
-export const { addShoppingCartProduct, incrementShoppingCartProductQuantity, decrementShoppingCartProductQuantity } = shoppingCartSlice.actions
+export const {
+    addShoppingCartProduct,
+    incrementShoppingCartProductQuantity,
+    decrementShoppingCartProductQuantity,
+    deleteShoppingCartProduct
+} = shoppingCartSlice.actions
 
 export default shoppingCartSlice.reducer
