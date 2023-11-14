@@ -276,9 +276,7 @@ describe("ShoppingCart Component", () => {
          }
         }
       );
-
-      const productList: ProductUI[] = productsReducerTestingState.data
-      const firstProduct = productList[0]
+      
       const shoppingCartProductsList = shoppingCartReducerTestingState.dataList
       const firstShoppingCartProduct = shoppingCartProductsList[0]
 
@@ -300,6 +298,89 @@ describe("ShoppingCart Component", () => {
       expect(subTotalTag.textContent).toBe(formatMoney(expectedValues.subTotal))
       expect(taxAmountTag.textContent).toBe(formatMoney(expectedValues.tax))
       expect(totalTag.textContent).toBe(formatMoney(expectedValues.total))
+    })
+
+    it("Amounts must be rendered successfully when a product has been deleted", () => {
+      const {container} = renderWithProviders(
+        <>
+          <ProductsListContainer />
+          <ShoppingCartListContainer />
+        </>,
+        {
+         preloadedState: {
+          products: productsReducerTestingState,
+          shoppingCart: shoppingCartReducerTestingEmptyState
+         }
+        }
+      );
+      
+      const addToCartButtonList = screen.getAllByTestId("AddShoppingCartIcon")
+      const firstAddToCartButton = addToCartButtonList[0]
+
+      fireEvent.click(firstAddToCartButton)
+  
+      const deleteProductButtonList = screen.getAllByRole("button", {name: "Delete product"})
+      const firstDeleteProductButton = deleteProductButtonList[0]
+
+      fireEvent.click(firstDeleteProductButton)
+
+      const subTotalTag = screen.getByTestId("purchaseDetails-subtotal")
+      const taxAmountTag = screen.getByTestId("purchaseDetails-taxAmount")
+      const totalTag = screen.getByTestId("purchaseDetails-total")
+
+      expect(subTotalTag.textContent).toBe(formatMoney(0))
+      expect(taxAmountTag.textContent).toBe(formatMoney(0))
+      expect(totalTag.textContent).toBe(formatMoney(0))
+    })
+
+    it("Must amounts be rendered successfully when several products has been deleted", () => {
+      const {container} = renderWithProviders(
+        <>
+          <ProductsListContainer />
+          <ShoppingCartListContainer />
+        </>,
+        {
+         preloadedState: {
+          products: productsReducerTestingState,
+          shoppingCart: shoppingCartReducerTestingEmptyState
+         }
+        }
+      );
+
+      const shoppingCartProductsList = shoppingCartReducerTestingState.dataList
+
+      const addToCartButtonList = screen.getAllByTestId("AddShoppingCartIcon")
+      const firstAddToCartButton = addToCartButtonList[0]
+      const secondAddToCartButton = addToCartButtonList[1]
+      const thirdAddToCartButton = addToCartButtonList[2]
+
+      fireEvent.click(firstAddToCartButton)
+      fireEvent.click(secondAddToCartButton)
+      fireEvent.click(thirdAddToCartButton)
+  
+      const deleteProductButtonList = screen.getAllByRole("button", {name: "Delete product"})
+      const firstDeleteProductButton = deleteProductButtonList[0]
+      const secondDeleteProductButton = deleteProductButtonList[1]
+
+      fireEvent.click(firstDeleteProductButton)
+      fireEvent.click(secondDeleteProductButton)
+
+      const [, , thirdProduct] = shoppingCartProductsList
+
+      const subTotalTag = screen.getByTestId("purchaseDetails-subtotal")
+      const taxAmountTag = screen.getByTestId("purchaseDetails-taxAmount")
+      const totalTag = screen.getByTestId("purchaseDetails-total")
+
+      expect(subTotalTag.textContent).toBe(thirdProduct.totalPrice)
+      expect(taxAmountTag.textContent).toBe(
+        formatMoney(shoppingCartProductUIToShoppingCartProductMapper(thirdProduct).totalPrice * 0.13)
+      )
+      expect(totalTag.textContent).toBe(
+        formatMoney(
+          shoppingCartProductUIToShoppingCartProductMapper(thirdProduct).totalPrice +
+        (shoppingCartProductUIToShoppingCartProductMapper(thirdProduct).totalPrice * 0.13) 
+        )
+      )
     })
   })
 });
