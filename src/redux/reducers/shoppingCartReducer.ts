@@ -178,6 +178,21 @@ export const shoppingCartSlice = createSlice({
             const filteredShoppingCart = current(state).dataList.filter(cartProduct => cartProduct.id !== cartProductId)
 
             state.dataList = filteredShoppingCart
+
+
+            // Calculate purchaseDetails
+            const subTotal = filteredShoppingCart.reduce(
+                (prev, actual) => prev + (
+                    shoppingCartProductUIToShoppingCartProductMapper(actual)
+                        .salePrice * actual.quantity),
+                0
+            )
+            const taxAmount = subTotal * 0.13
+            const total = subTotal + taxAmount
+
+            state.purchaseDetails.subTotal = formatMoney(subTotal)
+            state.purchaseDetails.taxAmount = formatMoney(taxAmount)
+            state.purchaseDetails.total = formatMoney(total)
         },
         resetShoppingCart: (state, action) => {
             state.dataList = shoppingCartInitialState.dataList
