@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import ProductsPage from "./features/products/pages/ProductsPage"
 import ShoppingCartPage from "./features/shoppingCart/pages/ShoppingCartPage";
+import CheckoutPage from "./features/checkout/pages/CheckoutPage";
 
 import { IRoute } from './interfaces'
 
@@ -31,10 +32,17 @@ export const routes: Array<IRoute> = [
         component: ProductsPage
     },
     {
-        key: 'products-route',
+        key: 'shopping-route',
         title: 'Shopping cart',
         path: '/shopping-cart',
         enabled: true,
         component: ShoppingCartPage,
+    },
+    {
+        key: 'checkout-route',
+        title: 'Checkout',
+        path: '/checkout',
+        enabled: true,
+        component: CheckoutPage,
     }
 ]
