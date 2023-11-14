@@ -13,6 +13,7 @@ import { productsReducerTestingState } from "../redux/reducers/productsReducer";
 import { ProductUI } from "../models/product";
 import { shoppingCartProductUIToShoppingCartProductMapper } from "../features/products/mappers";
 import { formatMoney } from "../utils/money";
+import ShoppingCartPageObject from "./pageObjects/ShoppingCartPageObject";
 
 describe("ShoppingCart Component", () => {
   describe("ShoppingCartList", () => {
@@ -26,16 +27,18 @@ describe("ShoppingCart Component", () => {
         }
       );
   
+      const shoppingCartPage = 
+          new ShoppingCartPageObject(
+            screen, 
+            {
+              shoppingCartList: shoppingCartReducerTestingState.dataList
+            }
+          );
+
       const shoppingCartDataList = shoppingCartReducerTestingState.dataList
-  
-      screen.getByRole("heading", { name: shoppingCartDataList[0].name })
-      screen.getByText(shoppingCartDataList[0].category)
-      screen.getByText(`${shoppingCartDataList[0].salePrice} / unit`)
-  
-      // screen.getByRole("")
-      screen.getAllByText("Delete product")
-  
-      screen.getByText(shoppingCartDataList[0].totalPrice)
+      const firstShoppingCart = shoppingCartDataList[0]
+
+      shoppingCartPage.allProductsWereRenderedSuccessfully(firstShoppingCart)
     });
   
     it("Should render no cart items text", () => {
@@ -47,8 +50,16 @@ describe("ShoppingCart Component", () => {
          }
         }
       );
-  
-      screen.getByText("No hay productos añadidos al carrito")    
+
+      const shoppingCartPage = 
+      new ShoppingCartPageObject(
+        screen, 
+        {
+          shoppingCartList: shoppingCartReducerTestingState.dataList
+        }
+      );
+      
+      shoppingCartPage.noShoppingCartProductsTitle()
     });
   
     describe("Increment product quantity", () => {
@@ -61,21 +72,23 @@ describe("ShoppingCart Component", () => {
            }
           }
         );
-    
-        const shoppingCartDataList = shoppingCartReducerTestingState.dataList
-        const firstShoppingCartProduct = shoppingCartDataList[0]
-    
-        const addQuantityButtonList = screen.getAllByRole("button", { name: "+" })
-        const firstAddQuantityButton = addQuantityButtonList[0]
+
+        const shoppingCartPage = 
+          new ShoppingCartPageObject(
+            screen, 
+            {
+              shoppingCartList: shoppingCartReducerTestingState.dataList
+            }
+          );
+
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
         
-        fireEvent.click(firstAddQuantityButton)
-        
-        const firstShoppingCartQuantity = screen.getByTestId("shoppingCartProductQuantity-" + firstShoppingCartProduct.id)
+        const firstShoppingCartQuantity = shoppingCartPage.getFirstShoppingCartQuantityText()
     
         expect(
-          firstShoppingCartQuantity.textContent
+          firstShoppingCartQuantity
         ).toBe(
-          `${firstShoppingCartProduct.quantity + 1}`
+          `${shoppingCartPage.getFirstShoppingCartProduct().quantity + 1}`
         )
       });
     
@@ -88,25 +101,27 @@ describe("ShoppingCart Component", () => {
            }
           }
         );
+
+        const shoppingCartPage = 
+          new ShoppingCartPageObject(
+            screen, 
+            {
+              shoppingCartList: shoppingCartReducerTestingState.dataList
+            }
+          );
     
-        const shoppingCartDataList = shoppingCartReducerTestingState.dataList
-        const firstShoppingCartProduct = shoppingCartDataList[0]
-    
-        const addQuantityButtonList = screen.getAllByRole("button", { name: "+" })
-        const firstAddQuantityButton = addQuantityButtonList[0]
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
         
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        
-        const firstShoppingCartQuantity = screen.getByTestId("shoppingCartProductQuantity-" + firstShoppingCartProduct.id)
-    
+        const firstShoppingCartQuantity = shoppingCartPage.getFirstShoppingCartQuantityText()    
+
         expect(
-          firstShoppingCartQuantity.textContent
+          firstShoppingCartQuantity
         ).toBe(
-          `${firstShoppingCartProduct.quantity + 5}`
+          `${shoppingCartPage.getFirstShoppingCartProduct().quantity + 5}`
         )
       });
 
@@ -125,25 +140,24 @@ describe("ShoppingCart Component", () => {
            }
           }
         );
-    
-        const shoppingCartDataList = shoppingCartReducerTestingState.dataList
-        const firstShoppingCartProduct = shoppingCartDataList[0]
-    
-        const addQuantityButtonList = screen.getAllByRole("button", { name: "+" })
-        const firstAddQuantityButton = addQuantityButtonList[0]
-    
-        const minusQuantityButtonList = screen.getAllByRole("button", { name: "-" })
-        const firstMinusQuantityButton = minusQuantityButtonList[0]
-        
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstMinusQuantityButton)
-        
-        const firstShoppingCartQuantity = screen.getByTestId("shoppingCartProductQuantity-" + firstShoppingCartProduct.id)
+
+        const shoppingCartPage = 
+        new ShoppingCartPageObject(
+          screen, 
+          {
+            shoppingCartList: shoppingCartReducerTestingState.dataList
+          }
+        );
+
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
+
+        const firstShoppingCartQuantity = shoppingCartPage.getFirstShoppingCartQuantityText()
     
         expect(
-          firstShoppingCartQuantity.textContent
+          firstShoppingCartQuantity
         ).toBe(
-          `${firstShoppingCartProduct.quantity}`
+          `${shoppingCartPage.getFirstShoppingCartProduct().quantity}`
         )
       });
   
@@ -156,34 +170,33 @@ describe("ShoppingCart Component", () => {
            }
           }
         );
+
+        const shoppingCartPage = 
+        new ShoppingCartPageObject(
+          screen, 
+          {
+            shoppingCartList: shoppingCartReducerTestingState.dataList
+          }
+        );
     
-        const shoppingCartDataList = shoppingCartReducerTestingState.dataList
-        const firstShoppingCartProduct = shoppingCartDataList[0]
-    
-        const addQuantityButtonList = screen.getAllByRole("button", { name: "+" })
-        const firstAddQuantityButton = addQuantityButtonList[0]
-    
-        const minusQuantityButtonList = screen.getAllByRole("button", { name: "-" })
-        const firstMinusQuantityButton = minusQuantityButtonList[0]
-        
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
-        fireEvent.click(firstAddQuantityButton)
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductAddQuantityButton()
   
-        fireEvent.click(firstMinusQuantityButton)
-        fireEvent.click(firstMinusQuantityButton)
-        fireEvent.click(firstMinusQuantityButton)
-        fireEvent.click(firstMinusQuantityButton)
-        fireEvent.click(firstMinusQuantityButton)
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
         
-        const firstShoppingCartQuantity = screen.getByTestId("shoppingCartProductQuantity-" + firstShoppingCartProduct.id)
+        const firstShoppingCartQuantity = shoppingCartPage.getFirstShoppingCartQuantityText()
     
         expect(
-          firstShoppingCartQuantity.textContent
+          firstShoppingCartQuantity
         ).toBe(
-          `${firstShoppingCartProduct.quantity}`
+          `${shoppingCartPage.getFirstShoppingCartProduct().quantity}`
         )
       });
     
@@ -196,19 +209,21 @@ describe("ShoppingCart Component", () => {
            }
           }
         );
-    
-        const shoppingCartDataList = shoppingCartReducerTestingState.dataList
-        const firstShoppingCartProduct = shoppingCartDataList[0]
-    
-        const minusQuantityButtonList = screen.getAllByRole("button", { name: "-" })
-        const firstMinusQuantityButton = minusQuantityButtonList[0]
+
+        const shoppingCartPage = 
+        new ShoppingCartPageObject(
+          screen, 
+          {
+            shoppingCartList: shoppingCartReducerTestingState.dataList
+          }
+        );
+            
+        shoppingCartPage.clickFirstShoppingCartProductMinusQuantityButton()
         
-        fireEvent.click(firstMinusQuantityButton)
-        
-        const firstShoppingCartQuantity = screen.getByTestId("shoppingCartProductQuantity-" + firstShoppingCartProduct.id)
+        const firstShoppingCartQuantity = shoppingCartPage.getFirstShoppingCartQuantityText()
     
         expect(
-          firstShoppingCartQuantity.textContent
+          firstShoppingCartQuantity
         ).toBe(
           `1`
         )
@@ -225,16 +240,21 @@ describe("ShoppingCart Component", () => {
            }
           }
         );
-    
-        const shoppingCartProductsList = screen.getAllByRole("article")
-    
-        const deleteProductButtonList = screen.getAllByRole("button", {name: "Delete product"})
-        const firstDeleteProductButton = deleteProductButtonList[0]
 
-        fireEvent.click(firstDeleteProductButton)
+        const shoppingCartPage = 
+        new ShoppingCartPageObject(
+          screen, 
+          {
+            shoppingCartList: shoppingCartReducerTestingState.dataList
+          }
+        );
+    
+        const shoppingCartProductsList = shoppingCartPage.getAllShoppingCartProductsListRendered()
+    
+        shoppingCartPage.clickFirstShoppingCartProductDeleteButton()
 
         expect(
-          screen.getAllByRole("article").length
+          shoppingCartPage.getAllShoppingCartProductsListRendered().length
         ).toBe(
           shoppingCartProductsList.length - 1
         )
