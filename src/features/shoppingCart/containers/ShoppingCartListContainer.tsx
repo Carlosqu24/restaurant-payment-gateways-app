@@ -9,6 +9,7 @@ import {
   incrementShoppingCartProductQuantity,
   deleteShoppingCartProduct 
 } from "../../../redux/reducers/shoppingCartReducer";
+import { sortShoppingCartProductListAlphabetically } from "../utils";
 
 const ShoppingCartListContainer = () => {
   const {
@@ -31,7 +32,7 @@ const ShoppingCartListContainer = () => {
 
   return (
     <ShoppingCartListPresentation 
-        shoppingCartList={shoppingCartList} 
+        shoppingCartList={sortShoppingCartProductListAlphabetically([ ...shoppingCartList ])} 
         purchaseDetails={purchaseDetails}
         onIncrementCartProductQuanitity={onIncrementCartProductQuanitity}
         onDecrementCartProductQuanitity={onDecrementCartProductQuanitity}
