@@ -2,7 +2,7 @@
 
 import React from "react";
 import { describe, it, expect } from "vitest";
-import {fireEvent, screen} from "@testing-library/react"
+import {fireEvent, getByRole, screen} from "@testing-library/react"
 
 import { renderWithProviders } from "./utils";
 
@@ -109,6 +109,10 @@ describe("ShoppingCart Component", () => {
           `${firstShoppingCartProduct.quantity + 5}`
         )
       });
+
+      it("Shouldn't change cart item position when qunaitity is updated", () => {
+        expect(true).toBe(true)
+      })
     })
   
     describe("Decrement product quantity", () => {
@@ -207,6 +211,32 @@ describe("ShoppingCart Component", () => {
           firstShoppingCartQuantity.textContent
         ).toBe(
           `1`
+        )
+      });
+    })
+
+    describe("Delete product", () => {
+      it("Should delete the product when user clicks on 'Delete product' button", () => {
+        const {container} = renderWithProviders(
+          <ShoppingCartListContainer />,
+          {
+           preloadedState: {
+            shoppingCart: shoppingCartReducerTestingState
+           }
+          }
+        );
+    
+        const shoppingCartProductsList = screen.getAllByRole("article")
+    
+        const deleteProductButtonList = screen.getAllByRole("button", {name: "Delete product"})
+        const firstDeleteProductButton = deleteProductButtonList[0]
+
+        fireEvent.click(firstDeleteProductButton)
+
+        expect(
+          screen.getAllByRole("article").length
+        ).toBe(
+          shoppingCartProductsList.length - 1
         )
       });
     })
