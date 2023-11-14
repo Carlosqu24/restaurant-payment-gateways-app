@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../../redux/store";
 import ShoppingCartListPresentation from "../presentations/ShoppingCartListPresentation";
-import { decrementShoppingCartProductQuantity, incrementShoppingCartProductQuantity } from "../../../redux/reducers/shoppingCartReducer";
+import { 
+  decrementShoppingCartProductQuantity, 
+  incrementShoppingCartProductQuantity,
+  deleteShoppingCartProduct 
+} from "../../../redux/reducers/shoppingCartReducer";
 
 const ShoppingCartListContainer = () => {
   const {
@@ -12,10 +16,6 @@ const ShoppingCartListContainer = () => {
     purchaseDetails
   } = useSelector((state: RootState) => state.shoppingCart)
   const dispatch = useDispatch()
-
-  console.log({
-    shoppingCartList
-  })
 
   const onIncrementCartProductQuanitity = (productId: number) => {
     dispatch(incrementShoppingCartProductQuantity(productId))
@@ -25,12 +25,17 @@ const ShoppingCartListContainer = () => {
     dispatch(decrementShoppingCartProductQuantity(productId))
   }
 
+  const onDeleteCartProduct = (productId: number) => {
+    dispatch(deleteShoppingCartProduct(productId))
+  }
+
   return (
     <ShoppingCartListPresentation 
         shoppingCartList={shoppingCartList} 
         purchaseDetails={purchaseDetails}
         onIncrementCartProductQuanitity={onIncrementCartProductQuanitity}
         onDecrementCartProductQuanitity={onDecrementCartProductQuanitity}
+        onDeleteCartProduct={onDeleteCartProduct}
     />
   )
 };

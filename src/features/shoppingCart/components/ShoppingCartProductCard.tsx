@@ -44,15 +44,17 @@ interface ShoppingCartProductCardProps {
   shoppingCartProduct: ShoppingCartProduct
   onIncrementCartProductQuanitity: Function
   onDecrementCartProductQuanitity: Function
+  onDeleteCartProduct: (shoppingCartProductId: number) => void
 }
 
 const ShoppingCartProductCard = ({
   shoppingCartProduct,
   onIncrementCartProductQuanitity,
-  onDecrementCartProductQuanitity
+  onDecrementCartProductQuanitity,
+  onDeleteCartProduct
 }: ShoppingCartProductCardProps) => {
   return (
-    <div
+    <article
       className={shoppingCartProductCardStyles.container.classNames}
       style={shoppingCartProductCardStyles.container.cssStyles}
     >
@@ -90,7 +92,10 @@ const ShoppingCartProductCard = ({
               >+</button>
             </div>
 
-            <span className='ml-[15px]'>Delete product</span>
+            <button 
+              className='ml-[15px]'
+              onClick={() => onDeleteCartProduct(shoppingCartProduct.id)}
+            >Delete product</button>
           </div>
         </div>
         
@@ -98,7 +103,7 @@ const ShoppingCartProductCard = ({
 
         <span className='self-start'>{shoppingCartProduct.totalPrice}</span>
       </div>
-    </div>
+    </article>
   )
 }
 

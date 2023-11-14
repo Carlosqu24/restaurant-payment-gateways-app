@@ -20,13 +20,15 @@ interface ShoppingCartListPresentationProps {
     purchaseDetails: PurchaseDetails
     onIncrementCartProductQuanitity: Function
     onDecrementCartProductQuanitity: Function
+    onDeleteCartProduct: (shoppingCartProductId: number) => void
 }
 
 const ShoppingCartListPresentation = ({ 
     shoppingCartList,
     purchaseDetails,
     onIncrementCartProductQuanitity,
-    onDecrementCartProductQuanitity 
+    onDecrementCartProductQuanitity,
+    onDeleteCartProduct
 }: ShoppingCartListPresentationProps) => {
     return (
         <div 
@@ -42,6 +44,7 @@ const ShoppingCartListPresentation = ({
                       shoppingCartProduct={product}
                       onIncrementCartProductQuanitity={onIncrementCartProductQuanitity}
                       onDecrementCartProductQuanitity={onDecrementCartProductQuanitity}
+                      onDeleteCartProduct={onDeleteCartProduct}
                   />)
             ) : (
               <h2>No hay productos añadidos al carrito</h2>
